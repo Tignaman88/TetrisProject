@@ -10,6 +10,8 @@ public class GamePanel extends JPanel implements Runnable{
     public static final int HEIGHT = 720;
     final int FPS = 60;
     Thread gameThread;
+    PlayManager pm;
+
 
     public GamePanel() {
 
@@ -17,6 +19,8 @@ public class GamePanel extends JPanel implements Runnable{
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setBackground(Color.black);
         this.setLayout(null);
+
+        pm = new PlayManager();
     }
 
     public void launchGame() {
@@ -49,10 +53,13 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     private void update() {
-
+        pm.update();
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        Graphics2D g2 = (Graphics2D)g;
+        pm.draw(g2);
     }
 }
