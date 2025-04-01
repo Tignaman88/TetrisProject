@@ -1,5 +1,6 @@
 package mino;
 
+import main.KeyHandler;
 import main.PlayManager;
 
 import java.awt.*;
@@ -24,6 +25,41 @@ public class Mino {
     public void setXY(int x, int y) {}
     public void updateXY(int direction) {}
     public void update() {
+
+        // Move the mino
+        if (KeyHandler.upPressed) {
+
+        }
+        if (KeyHandler.downPressed) {
+
+            b[0].y += Block.SIZE;
+            b[1].y += Block.SIZE;
+            b[2].y += Block.SIZE;
+            b[3].y += Block.SIZE;
+
+            // When moved down, reset the autoDropCounter
+            autoDropCounter = 0;
+
+            KeyHandler.downPressed = false;
+        }
+        if (KeyHandler.leftPressed) {
+
+            b[0].x -= Block.SIZE;
+            b[1].x -= Block.SIZE;
+            b[2].x -= Block.SIZE;
+            b[3].x -= Block.SIZE;
+
+            KeyHandler.leftPressed = false;
+        }
+        if (KeyHandler.rightPressed) {
+
+            b[0].x += Block.SIZE;
+            b[1].x += Block.SIZE;
+            b[2].x += Block.SIZE;
+            b[3].x += Block.SIZE;
+
+            KeyHandler.rightPressed = false;
+        }
 
         autoDropCounter++; // the counter increases in every frame
         if (autoDropCounter == PlayManager.dropInterval) {
